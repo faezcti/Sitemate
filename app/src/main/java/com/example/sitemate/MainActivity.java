@@ -1,6 +1,7 @@
 package com.example.sitemate;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "Button Clicked", Toast.LENGTH_SHORT).show();
-                displayData("Your name" + getName() + "\n" + "Your Email: " + getEmail() + "\n" + "Your Password : " + getPassword());
+                confirmPassword();
+                displayData("Your name : " + getName() + "\n" + "Your Email: " + getEmail() + "\n" + "Your Password : " + getPassword());
             }
         });
     }
@@ -53,15 +54,73 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getName(){
-        name = getName.getText().toString();
+        boolean isNameValid = true;
+        if(getName.getText().toString().isEmpty()){
+            showToastOnMainThread("Enter Your Name");
+            isNameValid = false;
+        }
+        else{
+            name = getName.getText().toString();
+        }
         return name;
     }
     private String getEmail(){
-        email = getEmail.getText().toString();
+        boolean isEmailValid = true;
+        if(getEmail.getText().toString().isEmpty()){
+            showToastOnMainThread("Enter Your Email");
+            isEmailValid = false;}
+        else
+        {email = getEmail.getText().toString();}
         return email;
     }
+
     private String getPassword(){
-        password = getPassword.getText().toString();
+        boolean isPasswordValid = true;
+        if(getPassword.getText().toString().isEmpty()){
+            showToastOnMainThread("Enter Your Password");
+            isPasswordValid = false;
+        }
+        else{
+            password = getPassword.getText().toString();
+        }
         return password;
+    }
+
+    private void confirmPassword(){
+        boolean isPasswordSame = true;
+        if(!getConfirmedPassword.getText().toString().equals(getPassword.getText().toString())){
+            showToastOnMainThread("Passwords do not match");
+            isPasswordSame = false;
+        }
+        else{
+            confirmedPassword = getConfirmedPassword.getText().toString();
+            Log.i("MainActivity", "Password is same");
+        }
+    }
+
+    private boolean entryValidity(){
+        boolean isValid = true;
+
+
+
+        if(getEmail.getText().toString().isEmpty()){
+            showToastOnMainThread("Enter Your Email");
+            isValid = false;
+        }
+
+        if(getPassword.getText().toString().isEmpty()){
+            showToastOnMainThread("Enter Your Password");
+            isValid = false;
+        }
+
+        if(!getConfirmedPassword.getText().toString().equals(getPassword.getText().toString())){
+            showToastOnMainThread("Passwords do not match");
+            isValid = false;
+        }
+        return isValid;
+    }
+
+    private void showToastOnMainThread(final String message) {
+        runOnUiThread(() -> Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show());
     }
 }
