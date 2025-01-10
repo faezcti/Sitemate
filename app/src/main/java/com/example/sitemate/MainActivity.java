@@ -14,12 +14,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity {
 
     Button createAccount;
     TextView displayData;
     EditText getName, getEmail, getPassword, getConfirmedPassword;
     String name, email, password, confirmedPassword;
+    UserRegistrationApiRequest sendRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 confirmPassword();
-                displayData("Your name : " + getName() + "\n" + "Your Email: " + getEmail() + "\n" + "Your Password : " + getPassword());
+                sendRequest = new UserRegistrationApiRequest(getName(), getEmail(), getPassword());
+                ExecutorService executor = Executors.newSingleThreadExecutor();
+                executor.execute(() -> {
+                    try {
+                        String response = sendRequest.sendUserRegistrationRequest();
+                        runOnUiThread(() -> displayData(response)); // Update UI on the main thread
+                    } catch (IOException | JSONException e) {
+                        e.printStackTrace();
+                        runOnUiThread(() -> showToastOnMainThread("Error occurred while sending data"));
+                    }
+                });
             }
         });
     }
@@ -96,28 +113,6 @@ public class MainActivity extends AppCompatActivity {
             confirmedPassword = getConfirmedPassword.getText().toString();
             Log.i("MainActivity", "Password is same");
         }
-    }
-
-    private boolean entryValidity(){
-        boolean isValid = true;
-
-
-
-        if(getEmail.getText().toString().isEmpty()){
-            showToastOnMainThread("Enter Your Email");
-            isValid = false;
-        }
-
-        if(getPassword.getText().toString().isEmpty()){
-            showToastOnMainThread("Enter Your Password");
-            isValid = false;
-        }
-
-        if(!getConfirmedPassword.getText().toString().equals(getPassword.getText().toString())){
-            showToastOnMainThread("Passwords do not match");
-            isValid = false;
-        }
-        return isValid;
     }
 
     private void showToastOnMainThread(final String message) {
