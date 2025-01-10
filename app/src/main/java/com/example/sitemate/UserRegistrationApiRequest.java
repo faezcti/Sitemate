@@ -65,8 +65,20 @@ public class UserRegistrationApiRequest {
                         response.append(inputLine);
                     }
                     in.close();
+                    JSONObject jsonResponse = new JSONObject(response.toString());
+                    String message = jsonResponse.getString("message");
+                    JSONObject user = jsonResponse.getJSONObject("user");
+                    String name = user.getString("name");
+                    String email = user.getString("email");
+
+                    // Created a formatted string here for the response for better readability during display
+                    String displayMessage = "Registration successful!\n\n" +
+                            "Message: " + message + "\n" +
+                            "Name: " + name + "\n" +
+                            "Email: " + email;
+
                     Log.d("UserRegistrationApiRequest", "Response from server: " + response);
-                    return response.toString();
+                    return displayMessage;
                 } else {
                     Log.e("UserRegistrationApiRequest", "Failed to send data on attempt " + attempt + ": HTTP error code: " + responseCode);
                 }

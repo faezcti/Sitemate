@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/mainView"
         app:layout_constraintTop_toTopOf="@+id/mainView"
-        app:layout_constraintVertical_bias="0.193" />
+        app:layout_constraintVertical_bias="0.187" />
 
     <EditText
         android:id="@+id/enterName"
@@ -65,13 +65,14 @@
         android:id="@+id/email"
         android:layout_width="316dp"
         android:layout_height="45dp"
+        android:layout_marginBottom="336dp"
         android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="@+id/mainView"
         app:layout_constraintEnd_toEndOf="@+id/mainView"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@+id/mainView"
-        app:layout_constraintTop_toTopOf="@+id/mainView"
-        app:layout_constraintVertical_bias="0.325" />
+        app:layout_constraintTop_toBottomOf="@id/enterName"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/enterEmail"

@@ -1,8 +1,10 @@
 package com.example.sitemate;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,22 +49,20 @@ public class MainActivity extends AppCompatActivity {
         getPassword = findViewById(R.id.enterPassword);
         getConfirmedPassword = findViewById(R.id.confirmPassword);
 
-        createAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                confirmPassword();
-                sendRequest = new UserRegistrationApiRequest(getName(), getEmail(), getPassword());
-                ExecutorService executor = Executors.newSingleThreadExecutor();
-                executor.execute(() -> {
-                    try {
-                        String response = sendRequest.sendUserRegistrationRequest();
-                        runOnUiThread(() -> displayData(response)); // Update UI on the main thread
-                    } catch (IOException | JSONException e) {
-                        e.printStackTrace();
-                        runOnUiThread(() -> showToastOnMainThread("Error occurred while sending data"));
-                    }
-                });
-            }
+        createAccount.setOnClickListener(view -> {
+            closeKeyboard(view);
+            confirmPassword();
+            sendRequest = new UserRegistrationApiRequest(getName(), getEmail(), getPassword());
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                try {
+                    String response = sendRequest.sendUserRegistrationRequest();
+                    runOnUiThread(() -> displayData(response)); // Update UI on the main thread
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                    runOnUiThread(() -> showToastOnMainThread("Error occurred while sending data"));
+                }
+            });
         });
     }
 
@@ -117,5 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void showToastOnMainThread(final String message) {
         runOnUiThread(() -> Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show());
+    }
+
+    public void closeKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null && getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
     }
 }
