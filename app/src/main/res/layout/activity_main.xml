@@ -7,58 +7,177 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="APIs Communication Demo"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+    <View
+        android:id="@+id/mainView"
+        android:layout_width="357dp"
+        android:layout_height="531dp"
+        android:background="@drawable/rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.29" />
 
     <TextView
-        android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:text="Click the Button To Get and display Info Below"
+        android:text="Enter Your Details"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mainView"
+        app:layout_constraintEnd_toEndOf="@+id/mainView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/mainView"
+        app:layout_constraintTop_toTopOf="@+id/mainView"
+        app:layout_constraintVertical_bias="0.065" />
+
+
+    <View
+        android:id="@+id/fullName"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/mainView"
+        app:layout_constraintEnd_toEndOf="@+id/mainView"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/mainView"
+        app:layout_constraintTop_toTopOf="@+id/mainView"
+        app:layout_constraintVertical_bias="0.193" />
+
+    <EditText
+        android:id="@+id/enterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter your full Name"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text1"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintBottom_toBottomOf="@+id/fullName"
+        app:layout_constraintEnd_toEndOf="@+id/fullName"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="@+id/fullName"
+        app:layout_constraintTop_toTopOf="@+id/fullName"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/getAPI"
+    <View
+        android:id="@+id/email"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/mainView"
+        app:layout_constraintEnd_toEndOf="@+id/mainView"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/mainView"
+        app:layout_constraintTop_toTopOf="@+id/mainView"
+        app:layout_constraintVertical_bias="0.325" />
+
+    <EditText
+        android:id="@+id/enterEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Click Me!"
+        android:hint="Enter your email"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text2" />
+        app:layout_constraintBottom_toBottomOf="@+id/email"
+        app:layout_constraintEnd_toEndOf="@id/email"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="@id/email"
+        app:layout_constraintTop_toTopOf="@id/email"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/password"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@id/mainView"
+        app:layout_constraintEnd_toEndOf="@id/mainView"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@id/mainView"
+        app:layout_constraintTop_toTopOf="@id/mainView"
+        app:layout_constraintVertical_bias="0.452" />
+
+    <EditText
+        android:id="@+id/enterPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/password"
+        app:layout_constraintEnd_toEndOf="@id/password"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toStartOf="@id/password"
+        app:layout_constraintTop_toTopOf="@+id/password"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/confirmPasswordView"
+        android:layout_width="316dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@id/mainView"
+        app:layout_constraintEnd_toEndOf="@id/mainView"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="@id/mainView"
+        app:layout_constraintTop_toTopOf="@id/mainView"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <EditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Confirm your password"
+        android:inputType="textPassword"
+        android:paddingStart="12dp"
+        android:paddingEnd="8dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/confirmPasswordView"
+        app:layout_constraintEnd_toEndOf="@id/confirmPasswordView"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="@id/confirmPasswordView"
+        app:layout_constraintTop_toTopOf="@+id/confirmPasswordView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/createAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:text="Create Your Account"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/mainView"
+        app:layout_constraintEnd_toEndOf="@id/mainView"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/mainView"
+        app:layout_constraintTop_toTopOf="@+id/mainView"
+        app:layout_constraintVertical_bias="0.766" />
 
     <TextView
         android:id="@+id/displayData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@color/white"
         android:padding="16dp"
         android:text="Fetched data will be displayed here."
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getAPI" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/mainView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
